@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Snake LAN — PEGASUS</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<audio id="bgMusic" src="BEAT.mp3" loop></audio>
+<audio id="pointSound" src="point-sound.mp3"></audio>
+<audio id="powerSound" src="power-sound.mp3"></audio>
+<body>
+  <div id="bootOverlay" class="boot-full">
+    <pre id="asciiArt">
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⠀
+⠀⠀⠈⠲⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⣶⣿⣿⠃⠀
+⠀⠀⠀⠀⠈⠻⣷⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⡿⠋⣨⣿⠏⠀⠀
+⠀⠀⠀⠀⠀⠀⠈⠛⢿⣿⣦⣀⠀⠀⠀⠀⠀⠀⠀⣠⣾⡿⠋⣠⣾⡿⠋⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣿⣿⡦⠀⠀⠀⣠⣾⡿⠋⣠⣾⡿⠋⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣯⡀⠀⣠⣾⡿⠋⣠⣾⡿⠋⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣾⣿⠋⣠⣾⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣨⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣠⣄⠀⠀⠀⣠⣾⡿⠋⣨⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠻⣿⣧⡀⠸⡿⠋⣠⣾⡿⠋⠀⠙⢿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠈⠻⣿⣦⡀⠺⠿⠋⠀⠀⠀⢠⣾⣿⣿⣅⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣠⣦⡈⠻⣿⣦⣀⠀⠀⠀⠀⠀⠈⠙⢿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣠⣾⡿⠋⠀⠀⠈⠻⣿⡷⠀⠀⠀⠀⠀⠀⠀⠈⠙⠿⣷⣄⡀⠀⠀⠀⠀
+⠀⠀⣾⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⢦⡀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠂⠀
+
+      
+          _____                    _____                    _____                    _____                  
+         /\    \                  /\    \                  /\    \                  /\    \                 
+        /::\    \                /::\    \                /::\____\                /::\    \                
+        \:::\    \              /::::\    \              /:::/    /               /::::\    \               
+         \:::\    \            /::::::\    \            /:::/    /               /::::::\    \              
+          \:::\    \          /:::/\:::\    \          /:::/    /               /:::/\:::\    \             
+           \:::\    \        /:::/__\:::\    \        /:::/    /               /:::/__\:::\    \            
+            \:::\    \      /::::\   \:::\    \      /:::/    /                \:::\   \:::\    \           
+             \:::\    \    /::::::\   \:::\    \    /:::/    /      _____    ___\:::\   \:::\    \          
+              \:::\    \  /:::/\:::\   \:::\    \  /:::/____/      /\    \  /\   \:::\   \:::\    \         
+_______________\:::\____\/:::/__\:::\   \:::\____\|:::|    /      /::\____\/::\   \:::\   \:::\____\        
+\::::::::::::::::::/    /\:::\   \:::\   \::/    /|:::|____\     /:::/    /\:::\   \:::\   \::/    /        
+ \::::::::::::::::/____/  \:::\   \:::\   \/____/  \:::\    \   /:::/    /  \:::\   \:::\   \/____/         
+  \:::\~~~~\~~~~~~         \:::\   \:::\    \       \:::\    \ /:::/    /    \:::\   \:::\    \             
+   \:::\    \               \:::\   \:::\____\       \:::\    /:::/    /      \:::\   \:::\____\            
+    \:::\    \               \:::\   \::/    /        \:::\__/:::/    /        \:::\  /:::/    /            
+     \:::\    \               \:::\   \/____/          \::::::::/    /          \:::\/:::/    /             
+      \:::\    \               \:::\    \               \::::::/    /            \::::::/    /              
+       \:::\____\               \:::\____\               \::::/    /              \::::/    /               
+        \::/    /                \::/    /                \::/____/                \::/    /                
+         \/____/                  \/____/                  ~~                       \/____/                 
+                                                                                                            
+
+                                                                                                                                                               ⠀⠀⠀⠀⠀
+    </pre>
+    <div id="bootControls">
+      <input id="passInput" placeholder="Contraseña" type="password">
+      <button id="passBtn">Entrar</button>
+      <div id="passMsg"></div>
+    </div>
+  </div>
+
+  <div id="container" style="display:none">
+    <aside id="sidebar">
+      <div id="joinBox">
+        <h2>Snake LAN</h2>
+        <input id="nameInput" placeholder="Nombre" />
+        <input id="colorInput" type="color" value="#00aa00" />
+        <button id="joinBtn">Unirse</button>
+        <div id="msg"></div>
+      </div>
+
+      <div id="leaderboard" class="card">
+        <h3>Leaderboard</h3>
+        <div id="leaders"></div>
+      </div>
+
+      <div class="card" id="chatCard">
+        <div id="chatWindow" style="height:220px; overflow:auto; margin-bottom:8px"></div>
+        <input id="chatInput" placeholder="Escribe y presiona Enter">
+      </div>
+
+      <div class="card" id="infoCard">
+        <div>Controles: WASD / ↑↓←→</div>
+        <div id="playersCount">Jugadores: 0</div>
+        <div id="targetInfo">Target: --</div>
+        <div style="margin-top:8px; font-size:11px; color:#666; opacity:0.7">🔴 Poder especial: reduce 10 segmentos a rival aleatorio</div>
+      </div>
+      
+      <div style="position:absolute; bottom:8px; left:8px; font-size:10px; color:#555; opacity:0.6">
+        Al Capone 0.1.1
+      </div>
+      
+      <div id="devCodeBox" class="card" style="position:absolute; bottom:40px; left:8px; width:200px; padding:8px;">
+        <div style="font-size:11px; color:#a9c2d9; margin-bottom:4px;">DEV CODES</div>
+        <input id="devCodeInput" placeholder="Enter code..." style="width:100%; padding:4px; border-radius:4px; border:1px solid rgba(255,255,255,0.06); background:#07121a; color:#e6eef8; font-size:11px;">
+      </div>
+    </aside>
+
+    <main id="main">
+      <canvas id="gameCanvas"></canvas>
+    </main>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>

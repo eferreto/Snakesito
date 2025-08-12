@@ -1,0 +1,30 @@
+*{box-sizing:border-box}
+body{ margin:0; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:#07101a; color:#e6eef8; }
+.boot-full{ position:fixed; inset:0; background:#000; color:#0cff9b; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+#bootControls{ margin-top:12px; }
+#bootControls input, #bootControls button{ padding:8px 10px; margin:6px; border-radius:6px; border:1px solid rgba(255,255,255,0.04); background:#071017; color:#e6eef8; }
+#bootControls button{ cursor:pointer; background:linear-gradient(180deg,#1f6a3a,#125a2f); color:white; font-weight:600; }
+
+#container{ display:flex; height:100vh; align-items:stretch; }
+#sidebar{ width:300px; background:linear-gradient(180deg,#06101a 0%, #071422 100%); padding:16px; border-right:1px solid rgba(255,255,255,0.03); box-shadow: 8px 0 24px rgba(2,6,23,0.6); overflow:auto; }
+#sidebar h2{ margin:0 0 8px 0; font-size:18px; color:#cfe8ff; }
+#joinBox input, #joinBox button{ width:100%; margin:6px 0; padding:8px; border-radius:6px; border:1px solid rgba(255,255,255,0.06); background:#07121a; color:#e6eef8; }
+#colorInput{ height:40px; cursor:pointer; }
+#joinBtn{ cursor:pointer; background:linear-gradient(180deg,#1565a6,#0d527f); color:white; font-weight:600; }
+.card{ margin-top:12px; padding:10px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:8px; }
+#leaders .leaderItem{ display:flex; align-items:center; padding:6px 4px; border-radius:6px; margin-bottom:6px; background: rgba(255,255,255,0.02); }
+.colorSwatch{ width:18px; height:18px; border-radius:4px; margin-right:8px; border:1px solid rgba(255,255,255,0.06); }
+.leaderText{ flex:1; font-size:14px; color:#e6eef8; }
+.leaderScore{ font-weight:700; color:#cfe8ff; margin-left:8px; }
+
+#main{ flex:1; display:flex; align-items:center; justify-content:center; padding:10px; position:relative; }
+canvas{ background:#041017; border-radius:8px; box-shadow: 0 12px 40px rgba(2,6,23,0.6); max-width:100%; max-height:100%; }
+
+#chatWindow div{ padding:4px 6px; border-radius:6px; margin-bottom:6px; background: rgba(255,255,255,0.01); }
+#chatWindow strong{ margin-right:6px; }
+
+@keyframes rainbow-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
